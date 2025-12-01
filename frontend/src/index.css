@@ -1,0 +1,180 @@
+@import "tailwindcss";
+
+
+/* TEDx color variables */
+:root{
+  --tedx-red: #E62B1E;
+  --tedx-dark: #111827;
+}
+
+/* Semantic utility classes for TEDx theme (use in className) */
+
+/* background colors */
+.bg-tedx-red { background-color: var(--tedx-red); }
+.bg-tedx-dark { background-color: var(--tedx-dark); }
+
+/* text colors */
+.text-tedx-red { color: var(--tedx-red); }
+.text-tedx-dark { color: var(--tedx-dark); }
+
+/* border colors */
+.border-tedx-red { border-color: var(--tedx-red); }
+.border-tedx-dark { border-color: var(--tedx-dark); }
+
+/* hover utilities */
+.hover\:bg-tedx-red:hover { background-color: var(--tedx-red); }
+.hover\:text-tedx-red:hover { color: var(--tedx-red); }
+
+/* small helpers */
+.bg-tedx-red-500 { background-color: var(--tedx-red); } /* alias if you prefer */
+
+
+/* ---------- TEDx additional UI helpers & animations ---------- */
+
+/* Animations */
+.fade-in { animation: fadeIn 700ms ease both; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+.fade-up { animation: fadeUp 800ms cubic-bezier(.2,.9,.2,1) both; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+
+.slide-right { animation: slideRight 700ms ease both; }
+@keyframes slideRight { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+
+.zoom-in { animation: zoomIn 500ms ease both; }
+@keyframes zoomIn { from { opacity: 0; transform: scale(.94); } to { opacity: 1; transform: scale(1); } }
+
+/* Hover / Card */
+.card-hover { transition: transform 280ms cubic-bezier(.2,.9,.2,1), box-shadow 280ms; }
+.card-hover:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 18px 40px rgba(0,0,0,0.6), 0 0 24px rgba(230,43,30,0.06); }
+
+/* Buttons */
+.btn-glow { transition: box-shadow 220ms ease, transform 160ms ease; }
+.btn-glow:hover { box-shadow: 0 0 20px rgba(230,43,30,0.9); transform: translateY(-2px); }
+
+.btn-outline { background: transparent; border: 1px solid rgba(255,255,255,0.06); color: #fff; padding: .6rem 1rem; border-radius: .5rem; }
+.btn-outline:hover { background: rgba(255,255,255,0.03); }
+
+/* Media zoom */
+.media-zoom img { transition: transform 420ms cubic-bezier(.2,.9,.2,1); }
+.media-zoom:hover img { transform: scale(1.12); }
+
+/* text-muted helper */
+.text-muted { color: #9ca3af; }
+
+/* small card style alias used in page */
+.tedx-card { background: rgba(17,24,39,0.7); border-radius: .5rem; }
+
+/* subtle neon border */
+.border-tedx-glow { box-shadow: 0 0 18px rgba(230,43,30,0.06); }
+
+/* small responsive fix */
+@media (max-width: 640px) {
+  .min-h-screen { min-height: auto; }
+  .h-screen { height: auto; padding: 4rem 0; }
+}
+
+
+/* Make root take full viewport height */
+html, body, #root {
+  height: 100%;
+}
+
+/* Page scroll container: full viewport, vertical snap */
+.page-scroll {
+  height: 100vh;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Each section-frame occupies one viewport and snaps to start */
+.section-frame {
+  height: 100vh;             /* exactly one viewport */
+  min-height: 100vh;
+  display: flex;
+  align-items: stretch;      /* allow child to fill vertically */
+  justify-content: center;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  position: relative;
+  box-sizing: border-box;
+}
+
+/* Ensure the inner wrapper stretches so your component content sits centered
+   and matches the Hero visual. If a component already has its own h-screen,
+   this won't interfere. */
+.section-frame > .section-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Optional — make inner content scroll inside the section if it overflows */
+.section-frame > .section-inner .overflow-auto {
+  max-height: 100%;
+  overflow: auto;
+}
+
+/* Small responsive tweak: for very tall content, allow sections to grow */
+@media (max-height: 600px) {
+  .section-frame { min-height: 600px; }
+}
+/* Ensure root fills viewport */
+html, body, #root {
+  height: 100%;
+}
+
+/* Vertical snap container */
+.page-scroll {
+  height: 100vh;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Each section occupies full viewport and snaps */
+.section-frame {
+  height: 100vh;
+  min-height: 100vh;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* section inner wrapper that centers or starts content vertically */
+.section-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* overridden to start by SectionWrapper when needed */
+}
+
+/* section content: constrained width and internal padding */
+.section-content {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* make sure inner components that have long content can scroll inside the section */
+.section-content > * {
+  max-height: calc(100vh - 4rem); /* leave room for internal padding */
+  overflow: auto;
+  padding-bottom: 1rem;
+}
+
+/* smaller screens fallback */
+@media (max-height: 700px) {
+  .section-frame { min-height: 700px; }
+  .section-content > * { max-height: none; overflow: visible; }
+}
