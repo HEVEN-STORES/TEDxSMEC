@@ -1,3 +1,5 @@
+// frontend/src/pages/Contact.jsx
+
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send, Facebook, Instagram, Twitter, Linkedin } from 'lucide-react';
 

@@ -29,6 +29,8 @@ import OrganizerForm from './pages/OrganizerForm';
 import CoordinatorsAdmin from './pages/CoordinatorsAdmin';
 import CoordinatorForm from './pages/CoordinatorForm';
 
+import Bookings from "./pages/Bookings";
+
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <Routes>
@@ -71,6 +73,9 @@ createRoot(document.getElementById('root')).render(
 
 
         <Route path="media" element={<MediaLibrary/>} />
+
+        <Route path="/admin/bookings" element={<Bookings />} />
+
         
       </Route>
 

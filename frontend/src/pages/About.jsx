@@ -1,3 +1,5 @@
+
+// frontend/src/pages/about.jsx
 import React from "react";
 
 import { Lightbulb, BookOpen, Users, Target } from 'lucide-react';
@@ -62,7 +64,7 @@ export default function About() {
           {/* RIGHT SIDE */}
           <div className="space-y-6">
 
-            {/* ABOUT SMEC */}
+            {/* ABOUT SMEC */}    
             <div className="flex items-start gap-4">
               <div className="bg-red-600 rounded-lg p-3 flex-shrink-0">
                 <BookOpen size={32} className="text-white" />

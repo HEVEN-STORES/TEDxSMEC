@@ -19,6 +19,10 @@ const adminCoordinatorsRouter = require('./routes/admin/coordinators');
 // Combined admin media router (contains public endpoints under /public and event/:eventId)
 const adminMediaRoutes = require('./routes/admin/media');
 
+
+const adminBookingsRouter = require('./routes/admin/bookings');
+
+
 const app = express();
 
 /* ---------- CORS ---------- */
@@ -80,6 +84,10 @@ app.use('/api/admin/coordinators', adminCoordinatorsRouter);
 //   GET  /api/admin/media/event/:eventId
 // and admin protected endpoints at /api/admin/media and /api/admin/media/:id etc.)
 app.use('/api/admin/media', adminMediaRoutes);
+
+
+app.use('/api/admin/bookings', adminBookingsRouter);
+
 
 /* ---------- start ---------- */
 const port = process.env.PORT || 4000;
